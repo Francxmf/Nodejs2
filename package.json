@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "nodemon server.ts"
+    "start": "nodemon server.ts",
+    "web": "serve -p 8080 web/"
   },
   "keywords": [],
   "author": "",

@@ -1,5 +1,6 @@
 import express from "express";
 import "express-async-errors";
+import cors from "cors";
 
 import prisma from "./lib/prisma/client";
 import {
@@ -9,9 +10,15 @@ import {
   PlanetData,
 } from "./lib/validation";
 
+const corsOptions = {
+  origin: "http://localhost:8080",
+};
+
 const app = express();
 
 app.use(express.json());
+
+app.use(cors(corsOptions));
 
 app.get("/planets/:id(\\d+)", async (request, response) => {
   const planetId = Number(request.params.id);
