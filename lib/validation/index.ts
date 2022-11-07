@@ -1,12 +1,11 @@
+import { ValidationError, Validator } from "express-json-validator-middleware";
 import addFormats from "ajv-formats";
-import { Validator, ValidationError } from "express-json-validator-middleware";
-import { ErrorRequestHandler, response } from "express";
+
+import { ErrorRequestHandler } from "express";
 
 const validator = new Validator({});
 
-addFormats(validator.ajv, ["date-time"])
-  .addKeyword("kind")
-  .addKeyword("modifier");
+addFormats(validator.ajv, ["date-time"]);
 
 export const validate = validator.validate;
 
@@ -17,9 +16,7 @@ export const validationErrorMiddleware: ErrorRequestHandler = (
   next
 ) => {
   if (error instanceof ValidationError) {
-    response.status(422).send({
-      errors: error.validationErrors,
-    });
+    response.status(422).send({ errors: error.validationErrors });
 
     next();
   } else {
