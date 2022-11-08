@@ -3,6 +3,6 @@ import "./script-2.mjs";
 
 import { greetingInstance } from "./greeting.mjs";
 
-greetingInstance.greet("franco");
+greetingInstance.greet("Franco");
 
 console.log("Index stampa:", greetingInstance.greeting);
